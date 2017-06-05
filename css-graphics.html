@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 基本图形</title>
+  <style>
+    .main {
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    .panel {
+      min-height: 230px;
+    }
+
+    .control {
+      margin: 10px 0 20px;
+    }
+
+    .btn {
+      color: #fff;
+      background-color: #0073b3;
+      padding: 5px 10px;
+      border: 0;
+      border-radius: 4px;
+    }
+
+    .btn + .btn {
+      margin-left: 10px;
+    }
+
+    /*矩形*/
+    .rectangle {
+      width: 100px;
+      height: 100px;
+      background-color: #00b0e0;
+      border: 15px solid #00b0e0;
+      transition: all .5s ease-out 0.3s;
+    }
+
+    .hollow {
+      background-color: transparent;
+    }
+
+    .angle {
+      height: 50px;
+      border-top: 0;
+      background-color: transparent;
+    }
+
+    .bevel {
+      position: relative;
+      width: 50px;
+      border-right: 0;
+      background-color: transparent;
+    }
+
+    .bevel:after {
+      content: '';
+      position: absolute;
+      left: -15px;
+      bottom: -15px;
+      width: 100px;
+      height: 50px;
+      border: 15px solid #00b0e0;
+      border-top: 0;
+    }
+
+    .parallelogram {
+      background-color: transparent;
+      width: 150px;
+      height: 90px;
+      border-width: 12px 15px;
+      transform: skew(-40deg);
+    }
+
+    .straight-line {
+      border: 0;
+      width: 200px;
+      height: 15px;
+    }
+
+    .oblique-line {
+      border: 0;
+      width: 200px;
+      height: 15px;
+      transform: translateY(70px) rotate(45deg);
+    }
+
+    /*三角形*/
+    .triangle-graphics {
+      transition: all 1s ease-out 0.3s;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-width: 0 100px 100px;
+      border-color: transparent transparent #00b0e0;
+      border-style: solid;
+    }
+
+    .process1 {
+      width: 150px;
+      height: 150px;
+      background-color: #00b0e0;
+    }
+
+    .process2 {
+      border: 50px solid transparent;
+      border-color: #00C176 #800400 #00b0e0 #f4c300;
+      width: 50px;
+      height: 50px;
+      background-color: transparent;
+    }
+
+    .process3 {
+      border: 100px solid transparent;
+      border-color: #00C176 #800400 #00b0e0 #f4c300;
+      width: 0;
+      height: 0;
+      background-color: transparent;
+    }
+
+    .process4 {
+      width: 0;
+      height: 0;
+      border-width: 100px;
+      border-color: transparent transparent #00b0e0;
+      border-style: solid;
+    }
+
+    .triangle-transform {
+      width: 0;
+      height: 0;
+      border-width: 0 50px 100px;
+      border-color: transparent transparent #00b0e0;
+      border-style: solid;
+    }
+
+    /*圆*/
+    .circle-graphics {
+      transition: all 1s ease-out 0.3s;
+    }
+
+    .circle {
+      width: 100px;
+      height: 100px;
+      background-color: transparent;
+      border: 15px solid #00b0e0;
+      border-radius: 50%;
+    }
+
+    .rounded-rectangle {
+      width: 100px;
+      height: 100px;
+      background-color: transparent;
+      border: 15px solid #00b0e0;
+      border-radius: 20%;
+    }
+
+    .arc {
+      width: 100px;
+      height: 100px;
+      border-style: solid;
+      border-color: #00b0e0 transparent transparent;
+      border-width: 15px;
+      border-radius: 50%;
+    }
+
+    .angle-arc {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-style: solid;
+      border-color: #00b0e0 #00b0e0 #00b0e0 transparent;
+      border-width: 15px;
+      border-radius: 50%;
+    }
+
+    .angle-arc::after {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 100px;
+      height: 100px;
+      content: '';
+      border-style: solid;
+      border-color: transparent transparent transparent #00b0e0;
+      border-width: 15px;
+      border-radius: 50%;
+      transform: rotate(30deg);
+    }
+
+    .angle-radian {
+      width: 50px;
+      height: 50px;
+      border-style: solid;
+      border-color: #00b0e0;
+      border-width: 15px 0 0;
+      border-radius: 50px 0 0 0;
+    }
+
+    .water-drops {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-width: 0 20px 50px;
+      border-color: transparent transparent #00b0e0;
+      border-style: solid;
+    }
+
+    .water-drops:after {
+      position: absolute;
+      top: 30px;
+      left: -20px;
+      content: '';
+      border: 20px solid #00b0e0;
+      border-radius: 100%;
+      border-color: transparent transparent #00b0e0 #00b0e0;
+      transform: rotate(-45deg);
+    }
+
+    /*多边形*/
+    /*http://codepen.io/wenbin5243/pen/iheHF*/
+    .polygon-graphics {
+      transition: all 1s ease-out 0.3s;
+    }
+
+    .pentagon {
+      width: 100px;
+      height: 100px;
+      background-color: #00b0e0;
+      clip-path: polygon(65.45085% 97.55283%, 9.54915% 79.38926%, 9.54915% 20.61074%, 65.45085% 2.44717%, 100% 50%, 65.45085% 97.55283%, 9.54915% 79.38926%, 9.54915% 20.61074%, 65.45085% 2.44717%, 100% 50%, 65.45085% 97.55283%, 9.54915% 79.38926%, 9.54915% 20.61074%, 65.45085% 2.44717%, 100% 50%, 65.45085% 97.55283%, 9.54915% 79.38926%, 9.54915% 20.61074%, 65.45085% 2.44717%, 100% 50%);
+      transform: rotate(-18deg);
+    }
+
+    .hexagon {
+      width: 100px;
+      height: 100px;
+      background-color: #00b0e0;
+      clip-path: polygon(75% 93.30127%, 25% 93.30127%, 0% 50%, 25% 6.69873%, 75% 6.69873%, 100% 50%, 75% 93.30127%, 25% 93.30127%, 0% 50%, 25% 6.69873%, 75% 6.69873%, 100% 50%, 75% 93.30127%, 25% 93.30127%, 0% 50%, 25% 6.69873%, 75% 6.69873%, 100% 50%, 75% 93.30127%, 25% 93.30127%);
+    }
+
+    .decagon {
+      width: 100px;
+      height: 100px;
+      background-color: #00b0e0;
+      clip-path: polygon(90.45085% 79.38926%, 65.45085% 97.55283%, 34.54915% 97.55283%, 9.54915% 79.38926%, 0% 50%, 9.54915% 20.61074%, 34.54915% 2.44717%, 65.45085% 2.44717%, 90.45085% 20.61074%, 100% 50%, 90.45085% 79.38926%, 65.45085% 97.55283%, 34.54915% 97.55283%, 9.54915% 79.38926%, 0% 50%, 9.54915% 20.61074%, 34.54915% 2.44717%, 65.45085% 2.44717%, 90.45085% 20.61074%, 100% 50%);
+      transition: none;
+    }
+
+    .two-side {
+      width: 100px;
+      height: 100px;
+      background-color: #00b0e0;
+      clip-path: polygon(97.55283% 65.45085%, 90.45085% 79.38926%, 79.38926% 90.45085%, 65.45085% 97.55283%, 50% 100%, 34.54915% 97.55283%, 20.61074% 90.45085%, 9.54915% 79.38926%, 2.44717% 65.45085%, 0% 50%, 2.44717% 34.54915%, 9.54915% 20.61074%, 20.61074% 9.54915%, 34.54915% 2.44717%, 50% 0%, 65.45085% 2.44717%, 79.38926% 9.54915%, 90.45085% 20.61074%, 97.55283% 34.54915%, 100% 50%);
+      transition: none;
+    }
+
+    /*http://www.cssplant.com/clip-path-generator*/
+    .irregular-polygon {
+      width: 300px;
+      height: 130px;
+      background-color: #00b0e0;
+      -webkit-clip-path: polygon(14.375% 4.52381%, 25.10417% 21.90476%,
+      36.45833% 9.52381%, 44.58333% 10.23809%, 44.58333% 30.95238%,
+      59.375% 52.14286%, 38.64583% 69.04762%, 23.85417% 79.76190%, 10.10417% 58.57142%, 6.66667% 10.95238%);
+      transition: none;
+    }
+
+    /*例子分析*/
+    .file-icon-animation {
+      transition: all 1s ease-out 0.3s;
+    }
+
+    .file-icon {
+      width: 150px;
+      height: 200px;
+      background: linear-gradient(-135deg, transparent 15%, #0073b3 0);
+      border-radius: 8%;
+      position: relative;
+    }
+
+    .file-icon::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(to left bottom, transparent 50%, #0073b3 0, rgba(0, 0, 0, .3));
+      top: 0;
+      right: 0;
+      width: 36%;
+      height: 26%;
+      border-radius: 0 0 0 25%;
+    }
+
+    .file-icon::before {
+      content: attr(data-type);
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-family: Arial, Tahoma, sans-serif;
+      font-size: 36px;
+      -webkit-font-smoothing: antialiased;
+      color: #fff;
+      text-transform: lowercase;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .file-icon-step1 {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      border-radius: 8%;
+      background: #0073b3;
+    }
+
+    .file-icon-step2 {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      border-radius: 8%;
+      background: linear-gradient(-135deg, transparent 15%, #0073b3 0);
+    }
+
+    .file-icon-step3 {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      border-radius: 8%;
+      background: linear-gradient(-135deg, transparent 15%, #0073b3 0);
+    }
+
+    .file-icon-step3::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(to left bottom, transparent 50%, #0073b3 0, rgba(0, 0, 0, .3));
+      top: 0;
+      right: 0;
+      width: 36%;
+      height: 26%;
+      border-radius: 0 0 0 25%;
+    }
+
+    .file-icon-step4 {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      border-radius: 8%;
+      background: linear-gradient(-135deg, transparent 15%, #0073b3 0);
+    }
+
+    .file-icon-step4::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(to left bottom, transparent 50%, #0073b3 0, rgba(0, 0, 0, .3));
+      top: 0;
+      right: 0;
+      width: 36%;
+      height: 26%;
+      border-radius: 0 0 0 25%;
+    }
+
+    .file-icon-step4::before {
+      content: attr(data-type);
+      position: absolute;
+      bottom: 10px;
+      left: 20px;
+      font-family: Arial, Tahoma, sans-serif;
+      font-size: 36px;
+      -webkit-font-smoothing: antialiased;
+      color: #fff;
+      text-transform: lowercase;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="main">
+  <div class="panel" id="graphics1">
+    <h3>矩形（正方形）</h3>
+    <div class="control">
+      <button class="btn" data-class="rectangle">矩形</button>
+      <button class="btn" data-class="hollow">空心矩形</button>
+      <button class="btn" data-class="angle">缺角矩形</button>
+      <button class="btn" data-class="bevel">缺斜角矩形</button>
+      <button class="btn" data-class="parallelogram">平行四边形</button>
+      <button class="btn" data-class="straight-line">直线</button>
+      <button class="btn" data-class="oblique-line">斜线</button>
+    </div>
+    <div class="rectangle"></div>
+  </div>
+  <div class="panel" id="graphics2">
+    <h3>三角形</h3>
+    <div class="control">
+      <button class="btn" data-class="triangle">三角形</button>
+      <button class="btn" data-class="process1">过程1</button>
+      <button class="btn" data-class="process2">过程2</button>
+      <button class="btn" data-class="process3">过程3</button>
+      <button class="btn" data-class="process4">过程4</button>
+      <button class="btn" data-class="triangle">过程5</button>
+      <button class="btn" data-class="triangle-transform">三角形变形</button>
+    </div>
+    <div class="triangle-graphics triangle"></div>
+  </div>
+  <div class="panel" id="graphics3">
+    <h3>圆</h3>
+    <div class="control">
+      <button class="btn" data-class="circle">空心圆</button>
+      <button class="btn" data-class="rounded-rectangle">圆角矩形</button>
+      <button class="btn" data-class="arc">圆弧</button>
+      <button class="btn" data-class="angle-arc">任意角度圆弧</button>
+      <button class="btn" data-class="angle-radian">尖角弧度</button>
+      <button class="btn" data-class="water-drops">水滴</button>
+    </div>
+    <div class="circle-graphics circle"></div>
+  </div>
+  <div class="panel" id="graphics4">
+    <h3>多边形</h3>
+    <div class="control">
+      <button class="btn" data-class="pentagon">五边形</button>
+      <button class="btn" data-class="hexagon">六边形</button>
+      <button class="btn" data-class="decagon">十边形</button>
+      <button class="btn" data-class="two-side">二十边形</button>
+      <button class="btn" data-class="irregular-polygon">不规则多边形</button>
+    </div>
+    <div class="polygon-graphics pentagon"></div>
+  </div>
+  <div class="panel" id="graphics5">
+    <h3>例子分析</h3>
+    <div class="control">
+      <button class="btn" data-class="file-icon">文件图标</button>
+      <button class="btn" data-class="file-icon-step1">步骤一</button>
+      <button class="btn" data-class="file-icon-step2">步骤二</button>
+      <button class="btn" data-class="file-icon-step3">步骤三</button>
+      <button class="btn" data-class="file-icon-step4">步骤四</button>
+    </div>
+    <div class="file-icon-animation file-icon" data-type="doc"></div>
+  </div>
+</div>
+
+
+<script src="./jquery.min.js"></script>
+<script>
+  $(function () {
+    $('#graphics1 button').click(function (e) {
+      $('.rectangle').removeClass()
+        .addClass('rectangle').addClass($(e.target).data('class'));
+    });
+    $('#graphics2 button').click(function (e) {
+      $('.triangle-graphics').removeClass()
+        .addClass('triangle-graphics').addClass($(e.target).data('class'));
+    });
+    $('#graphics3 button').click(function (e) {
+      $('.circle-graphics').removeClass()
+        .addClass('circle-graphics').addClass($(e.target).data('class'));
+    });
+    $('#graphics4 button').click(function (e) {
+      $('.polygon-graphics').removeClass()
+        .addClass('polygon-graphics').addClass($(e.target).data('class'));
+    });
+    $('#graphics5 button').click(function (e) {
+      $('.file-icon-animation').removeClass()
+        .addClass('file-icon-animation').addClass($(e.target).data('class'));
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>变量和函数</title>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <style>
+    h3 {
+      margin: 0;
+    }
+
+    pre {
+      width: 800px;
+    }
+
+    .container {
+      width: 600px;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #efecf4;
+    }
+
+    .container + .container {
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+<ol>
+  <li>
+    <h3>边框颜色取自文本值</h3>
+    <div class="container">
+      <div style="color: #3caadb;border: 4px solid currentColor;">边框颜色</div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div style="color: #3caadb;border: 4px solid currentColor;"&gt;边框颜色&lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>currentColor 在渐变中使用</h3>
+    <div class="container">
+      <div
+          style="height:100px;color: #3caadb;
+          background: linear-gradient(to right, #fff, currentColor 100%);">
+      </div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div
+        style="height:100px;color: #3caadb;
+        background: linear-gradient(to right, #fff, currentColor 100%);"&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>calc 自适应布局</h3>
+    <style>
+      .calc-layout {
+        display: flex;
+        min-height: 200px;
+        margin-top: 20px;
+        color: #fff;
+      }
+
+      .calc-side {
+        width: 200px;
+        padding: 10px;
+        background: #0096be;
+      }
+
+      .calc-main {
+        width: calc(100% - 200px);
+        padding: 10px;
+        background: #88C100;
+      }
+    </style>
+    <div class="calc-layout">
+      <div class="calc-side">左边侧栏，width:200px;</div>
+      <div class="calc-main">内容</div>
+    </div>
+    <pre>
+      <code class="html">
+    .calc-layout{
+      display: flex;
+    }
+    .calc-side{
+      width: 200px;
+    }
+    .calc-main{
+      width: calc(100% - 200px);
+    }    
+    &lt;div class="calc-layout"&gt;
+      &lt;div class="calc-side"&gt;左边侧栏，width:200px;&lt;/div&gt;
+      &lt;div class="calc-main"&gt;内容&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>使用calc()创建CSS网格</h3>
+    <style>
+      :root {
+        --columns: 12;
+        --gutter: 5%;
+      }
+
+      .row {
+        display: flex;
+        height: 100px;
+      }
+
+      /*@function grid-width($cols) {
+        @return calc(100% / var(--columns) * #{$cols} - var(--gutter));
+      }
+      @for $i from 0 through 12 {
+        .col-#{$i} {
+          width: grid-width(#{$i});
+        }
+      }*/
+      .col-3 {
+        width: calc(100% / var(--columns) * 3 - var(--gutter));
+        border: 1px solid #00b0e0;
+        padding: 10px;
+      }
+
+      .col-4 {
+        width: calc(100% / var(--columns) * 4 - var(--gutter));
+        border: 1px solid #00b0e0;
+        padding: 10px;
+      }
+
+      .col-5 {
+        width: calc(100% / var(--columns) * 5 - var(--gutter));
+        border: 1px solid #00b0e0;
+        padding: 10px;
+      }
+    </style>
+    <div class="row">
+      <div class="col-3">col-3</div>
+      <div class="col-4">col-4</div>
+      <div class="col-5">col-5</div>
+    </div>
+    <pre><code class="html">
+  .row{
+    display: flex;
+    height: 100px;
+  }
+  @function grid-width($cols) {
+    @return calc(100% / var(--columns) * #{$cols} - var(--gutter));
+  }
+  @for $i from 0 through 12 {
+    .col-#{$i} {
+      width: grid-width(#{$i});
+    }
+  } 
+  &lt;div class="row"&gt;
+    &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+    &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+    &lt;div class="col-5"&gt;col-5&lt;/div&gt;
+  &lt;/div&gt;
+    </code></pre>
+  </li>
+
+  <li>
+    <h3>自定义变量</h3>
+    <pre><code>
+:root {
+  --main-color: #4d4e53;
+  --main-bg: rgb(255, 255, 255);
+  --logo-border-color: rebeccapurple;
+  --header-height: 68px;
+  --content-padding: 10px 20px;
+  --base-line-height: 1.428571429;
+  --transition-duration: .35s;
+  --p-margin: 20px;
+}
+p {
+  margin: var(--p-margin, 0 0 10px);
+}
+
+.list {
+  --list-font-size: 1rem;
+  font-size: var(--list-font-size);
+}
+
+.list-highlight {
+  --list-highlight-font-size: 1.5rem;
+  font-size: var(--list-highlight-font-size);
+}
+    </code></pre>
+  </li>
+  <li>
+    <h3>通过自定义变量模拟 CSS 条件语句</h3>
+    <style>
+      :root {
+        --is-big: 0;
+      }
+
+      .is-big {
+        --is-big: 1;
+      }
+
+      .block {
+        padding: calc(
+            25px * var(--is-big) +
+            10px * (1 - var(--is-big))
+        );
+        margin-top: 5px;
+        border-style: solid;
+        border-color: #00b0e0;
+        border-width: calc(
+            3px * var(--is-big) +
+            1px * (1 - var(--is-big))
+        );
+      }
+    </style>
+    <div class="block">
+      class="block"
+    </div>
+    <div class="block is-big">
+      class="block"
+    </div>
+    <pre><code class="css">
+:root {
+  --is-big: 0;
+}
+
+.is-big {
+  --is-big: 1;
+}
+
+.block {
+  padding: calc(
+      25px * var(--is-big) +
+      10px * (1 - var(--is-big))
+  );
+  margin-top: 5px;
+  border-style: solid;
+  border-color: #00b0e0;
+  border-width: calc(
+      3px * var(--is-big) +
+      1px * (1 - var(--is-big))
+  );
+}
+    </code></pre>
+  </li>
+</ol>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,2 +1,2 @@
 # css-future
-# [online](https://hopefuture.github.io/css-future/){:target="_blank"}
+# [online](https://hopefuture.github.io/css-future/)

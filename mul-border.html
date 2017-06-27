@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>多重边框</title>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<ol>
+  <li>
+    <h3>边框</h3>
+    <div style="border: 20px solid #ba68c8;background-color: #f3e5f5; width: 150px; height: 200px;">
+    </div>
+  </li>
+  <li>
+    <h3>多重边框1</h3>
+    <div style="border: 10px solid #aed581; width: 150px; height: 200px;">
+      <div
+          style="border: 20px solid #ba68c8;background-color: #f3e5f5; width: 130px; height: 180px;">
+      </div>
+    </div>
+    <pre><code class="html">
+  &lt;div class="outer"&gt;
+    &lt;div class="inner"&gt;&lt;/div&gt;
+  &lt;/div&gt; 
+    </code></pre>
+  </li>
+
+  <li>
+    <h3>多重边框-点线、虚线（dotted dashed solid double groove ridge ridge inset outset）</h3>
+    <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+outline: 10px dotted #aed581;">
+    </div>
+  </li>
+
+  <li>
+    <h3>多重边框 outline-offset 属性</h3>
+    <div style="padding: 30px;">
+      <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+outline: 10px solid #aed581;outline-offset: 15px;">
+      </div>
+    </div>
+  </li>
+
+  <li>
+    <h3>多重边框 outline 圆角</h3>
+    <div style="padding: 30px;">
+      <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+outline: 10px solid #aed581; border-radius: 50px;">
+      </div>
+    </div>
+  </li>
+
+  <li>
+    <h3>多重边框 box-shadow 投影</h3>
+    <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+box-shadow:5px 10px 10px #aed581;">
+    </div>
+    <pre>
+      <code class="css">
+    box-shadow:5px 10px 10px #aed581;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>多重边框 box-shadow 双重边框</h3>
+    <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+box-shadow:0 0 0 10px #aed581;">
+    </div>
+    <pre>
+      <code class="css">
+    box-shadow:inset x-offset y-offset blur-radius spread-radius color
+    box-shadow:投影方式 X轴偏移量 Y轴偏移量 投影模糊半径 投影扩展半径 投影颜色
+    投影方式默认是外阴影，设置 inset 表示内投影，x-offset 水平偏移值，可正可负
+    y-offset 垂直偏移值，可正可负，blur-radius 只支持正值，spread-radius可正可负
+    负数表示向里收缩
+      </code>
+    </pre>
+    <pre><code class="css">
+    box-shadow:0 0 0 10px #aed581;
+    </code></pre>
+  </li>
+
+  <li>
+    <h3>多重边框 box-shadow 多重边框</h3>
+    <div style="padding: 30px;">
+      <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+box-shadow:0 0 0 10px #aed581, 0 0 0 15px #f48fb1, 0 0 0 25px #81d4fa;">
+      </div>
+    </div>
+    <pre><code class="css">
+    box-shadow: 0 0 0 10px #aed581,
+                0 0 0 15px #f48fb1,
+                0 0 0 25px #81d4fa;
+    </code></pre>
+  </li>
+
+  <li>
+    <h3>多重边框 box-shadow 多重边框-圆角</h3>
+    <div style="padding: 30px;">
+      <div style="border: 20px solid #ba68c8; width: 150px; height: 200px;background-color: #f3e5f5;
+box-shadow:0 0 0 10px #aed581, 0 0 0 15px #f48fb1, 0 0 0 25px #81d4fa; border-radius: 20px;">
+      </div>
+    </div>
+    <pre><code class="css">
+    box-shadow: 0 0 0 10px #aed581,
+                0 0 0 15px #f48fb1,
+                0 0 0 25px #81d4fa;
+    border-radius: 20px;
+    </code></pre>
+  </li>
+</ol>
+
+<script src="jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  $(function () {
+    $('#marginCollapseRadio input').change(function () {
+      var value = $(this).val();
+      $('#marginCollapsePanel div').css({
+        marginCollapse: value
+      });
+    });
+  });
+</script>
+</body>
+</html>
+

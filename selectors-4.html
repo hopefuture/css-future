@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>第四代CSS选择器</title>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <style>
+    p, pre {
+      margin: 5px;
+    }
+
+    .example:not(.intro) {
+      color: #00b0e0;
+    }
+
+    .example2:has( > .border ) {
+      border: 1px solid #00b0e0;
+    }
+  </style>
+</head>
+<body>
+<ol>
+  <li>
+    否定伪类:not
+    <p class="example">class="example"</p>
+    <p class="example intro">class="example intro"</p>
+    <pre><code>
+.example:not(.intro) {
+  color: #00b0e0;
+}
+&lt;p class="example"&gt;class="example"&lt;/p&gt;
+&lt;p class="example intro"&gt;class="example intro"&lt;/p&gt;
+    </code></pre>
+  </li>
+
+  <li>
+    关系伪类:has
+    <p>
+    <div class="example2" href="#">
+      <div class="border">
+        关系伪类:has
+      </div>
+    </div>
+    <pre><code>
+.example2:has( > .border ) {
+  border: 1px solid #00b0e0;
+}
+&lt;div class="example2" href="#"&gt;
+  &lt;div class="border"&gt;
+    关系伪类:has
+  &lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+    </p>
+  </li>
+</ol>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

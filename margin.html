@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <title>margin 的用法</title>
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+  <style>
+    h3 {
+      margin: 0;
+    }
+
+    pre {
+      width: 800px;
+    }
+
+    .container {
+      margin: 10px 0;
+      background-color: #efecf4;
+      border: 1px solid transparent;
+      width: 600px;
+    }
+
+    .container + .container {
+      margin-top: 20px;
+    }
+
+    .container2 {
+      margin: 10px 0;
+      background-color: #efecf4;
+      width: 600px;
+    }
+
+    .inner {
+      color: #fff;
+      background-color: #00b0e0;
+    }
+  </style>
+</head>
+<body>
+<ol>
+  <li>
+    <h3>行内元素与块级元素(或行内块级元素) margin 行为表现的不一样</h3>
+    <div class="container">
+      <span class="inner" style="margin: 20px 50px;">行内元素 margin: 20px 50px;</span>
+    </div>
+    <div class="container">
+      <div class="inner" style="margin: 20px 50px;">
+        块级元素或行内块级元素 margin: 20px 50px;
+      </div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div class="container"&gt;
+      &lt;span class="inner" style="margin: 20px 50px;"&gt;行内元素 margin: 20px 50px;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="container"&gt;
+      &lt;div class="inner" style="margin: 20px 50px;"&gt;
+        块级元素或行内块级元素 margin: 20px 50px;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+  <li>
+    <h3>margin 值为百分比时计算规则</h3>
+    <div class="container">
+      <div class="inner" style="margin: 2%;">
+        父元素 width 600px; 子元素 margin: 2%
+      </div>
+    </div>
+    <div class="container" style="height: 77px;">
+      <div class="inner" style="margin: 2%;position: absolute;">
+        父元素 width 600px; 子元素 margin: 2%;position: absolute;
+      </div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div class="container"&gt;
+      &lt;div class="inner" style="margin: 2%;"&gt;
+        父元素 width 600px; 子元素 margin: 2%
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="container" style="height: 77px;"&gt;
+      &lt;div class="inner" style="margin: 2%;position: absolute;"&gt;
+        父元素 width 600px; 子元素 margin: 2%;position: absolute;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>margin 重叠特性</h3>
+    <h4>兄弟元素重叠</h4>
+    <div class="container2">
+      <p class="inner" style="margin: 1em 0; line-height: 1em;">第一行</p>
+      <p class="inner" style="margin: 1em 0; line-height: 1em;">第二行</p>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div class="container2"&gt;
+      &lt;p class="inner" style="margin: 1em 0; line-height: 1em;"&gt;第一行&lt;/p&gt;
+      &lt;p class="inner" style="margin: 1em 0; line-height: 1em;"&gt;第二行&lt;/p&gt;
+    &lt;/div&gt;   
+      </code>
+    </pre>
+
+    <h4>父子元素重叠</h4>
+    <div style="border-top: 1px solid #88C100;"></div>
+    <div class="container2">
+      <div class="inner" style="margin-top: 50px;">子元素</div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div class="container2"&gt;
+      &lt;div class="inner" style="margin-top: 50px;"&gt;子元素&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+    等同于给父元素设置 margin-top
+    <pre>
+      <code class="html">
+    &lt;div class="container2" style="margin-top: 50px;"&gt;
+      &lt;div class="inner"&gt;子元素&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+    也等同于给父子元素同时设置 margin-top
+    <pre>
+      <code class="html">
+    &lt;div class="container2" style="margin-top: 50px;"&gt;
+      &lt;div class="inner" style="margin-top: 50px;"&gt;子元素&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>空block元素重叠</h3>
+    <div class="container">
+      <p class="inner" style="margin: 1em 0;"></p>
+    </div>
+
+    <pre>
+      <code class="html">
+    &lt;div class="container"&gt;
+      &lt;div class="inner" style="margin: 1em 0;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>margin auto 设置垂直居中</h3>
+    <div class="container" style="position: relative;height: 200px;">
+      <div class="inner"
+           style="position: absolute;left:0;right:0;top:0;bottom:0;height:100px;width:300px;margin: auto">
+      </div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div class="container" style="position: relative;height: 200px;"&gt;
+      &lt;div class="inner"
+           style="position: absolute;left:0;right:0;top:0;bottom:0;
+        height:100px;width:300px;margin: auto"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+  </li>
+
+  <li>
+    <h3>margin 重叠计算规则</h3>
+    <h4>参与折叠的 margin 都是正值</h4>
+    <div>
+      <div style="height:50px; margin-bottom:50px; width:50px; background-color: red;">A</div>
+      <div style="height:50px; margin-top:100px; width:50px; background-color: green;">B</div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div&gt;
+      &lt;div style="height:50px; margin-bottom:50px; width:50px; background-color: red;"&gt;A&lt;/div&gt;
+      &lt;div style="height:50px; margin-top:100px; width:50px; background-color: green;"&gt;B&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+    <img src="http://linder0209.github.io/web-ui-guide/views/css/images/margin%20c2.png" alt="">
+  </li>
+
+  <li>
+    <h3>margin 重叠计算规则</h3>
+    <h4>参与折叠的 margin 都是负值</h4>
+    <div>
+      <div style="height:50px; margin-bottom:50px; width:50px; background-color: red;">A</div>
+      <div style="height:50px; margin-top:100px; width:50px; background-color: green;">B</div>
+    </div>
+    <pre>
+      <code class="html">
+    &lt;div&gt;
+      &lt;div style="height:50px; margin-bottom:50px; width:50px; background-color: red;"&gt;A&lt;/div&gt;
+      &lt;div style="height:50px; margin-top:100px; width:50px; background-color: green;"&gt;B&lt;/div&gt;
+    &lt;/div&gt;
+      </code>
+    </pre>
+    <img src="http://linder0209.github.io/web-ui-guide/views/css/images/margin%20c2.png" alt="">
+  </li>
+
+  <li>
+    <h3>margin 重叠计算规则</h3>
+    <p id="marginCollapseRadio">
+      <input type="radio" name="marginCollapse" value="collapse" checked> collapse(重叠，默认值)
+      <input type="radio" name="marginCollapse" value="discard"> discard(取消margin 值)
+      <input type="radio" name="marginCollapse" value="separate"> separate(取消折叠)
+    </p>
+    <div id="marginCollapsePanel">
+      <div style="background: #009f3d;margin: 20px;">margin:20px;</div>
+      <div style="background: #0096be;margin: 50px;">margin:50px;</div>
+    </div>
+  </li>
+</ol>
+
+<script src="jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+  $(function() {
+    $('#marginCollapseRadio input').change(function(){
+      var value = $(this).val();
+      $('#marginCollapsePanel div').css({
+        marginCollapse: value
+      });
+    });
+  });
+</script>
+</body>
+</html>
